@@ -1,5 +1,6 @@
 package com.agriseva.common.exception;
 
+import com.agriseva.auth.exception.InvalidCredentialsException;
 import com.agriseva.user.exception.EmailAlreadyExistsException;
 import com.agriseva.user.exception.PhoneNumberAlreadyExistsException;
 import com.agriseva.user.exception.RoleNotFoundException;
@@ -50,6 +51,23 @@ public class GlobalExceptionHandler {
 
         return ResponseEntity
                 .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body(response);
+    }
+
+    @ExceptionHandler(InvalidCredentialsException.class)
+    public ResponseEntity<ApiErrorResponse> handleInvalidCredentials(
+            InvalidCredentialsException exception,
+            HttpServletRequest request
+    ) {
+        ApiErrorResponse response = buildErrorResponse(
+                HttpStatus.UNAUTHORIZED,
+                exception.getMessage(),
+                request.getRequestURI(),
+                null
+        );
+
+        return ResponseEntity
+                .status(HttpStatus.UNAUTHORIZED)
                 .body(response);
     }
 
