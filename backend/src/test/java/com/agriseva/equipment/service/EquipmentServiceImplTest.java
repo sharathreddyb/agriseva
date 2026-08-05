@@ -160,20 +160,30 @@ class EquipmentServiceImplTest {
     }
 
     @Test
-    void getAllActiveShouldReturnMappedEquipment() {
+    void searchShouldReturnMappedEquipment() {
         User owner = createOwner();
-
+    
         Equipment equipment = createEquipment(owner);
         equipment.setId(10L);
-
-        when(equipmentRepository.findByActiveTrue())
-                .thenReturn(List.of(equipment));
-
+    
+        when(equipmentRepository.findAll(
+                any(org.springframework.data.jpa.domain.Specification.class)
+        )).thenReturn(List.of(equipment));
+    
         List<EquipmentResponse> responses =
-                equipmentService.getAllActive();
-
+                equipmentService.search(
+                        EquipmentCategory.TRACTOR,
+                        "Siddipet",
+                        null,
+                        EquipmentStatus.AVAILABLE,
+                        "Mahindra"
+                );
+    
         assertEquals(1, responses.size());
-        assertEquals("Mahindra Tractor", responses.get(0).getName());
+        assertEquals(
+                "Mahindra Tractor",
+                responses.get(0).getName()
+        );
     }
 
     private User createOwner() {

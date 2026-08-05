@@ -6,6 +6,7 @@ import com.agriseva.equipment.exception.EquipmentAccessDeniedException;
 import com.agriseva.equipment.exception.EquipmentNotFoundException;
 import com.agriseva.equipment.exception.EquipmentOwnerRoleRequiredException;
 import com.agriseva.equipment.model.Equipment;
+import com.agriseva.equipment.model.EquipmentCategory;
 import com.agriseva.equipment.model.EquipmentStatus;
 import com.agriseva.equipment.repository.EquipmentRepository;
 import com.agriseva.user.model.RoleType;
@@ -17,6 +18,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.List;
+
+import com.agriseva.equipment.specification.EquipmentSpecifications;
+import org.springframework.data.jpa.domain.Specification;
 
 @Service
 @RequiredArgsConstructor
@@ -106,12 +110,26 @@ public class EquipmentServiceImpl implements EquipmentService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<EquipmentResponse> getAllActive() {
-        return equipmentRepository
-                .findByActiveTrue()
-                .stream()
-                .map(this::buildResponse)
-                .toList();
+    public List<EquipmentResponse> search(
+            EquipmentCategory category,
+            String district,
+            String village,
+            EquipmentStatus status,
+            String keyword
+    ) {
+    Specification<Equipment> specification =
+            EquipmentSpecifications.isActive()
+                    .and(EquipmentSpecifications.hasCategory(category))
+                    .and(EquipmentSpecifications.hasDistrict(district))
+                    .and(EquipmentSpecifications.hasVillage(village))
+                    .and(EquipmentSpecifications.hasStatus(status))
+                    .and(EquipmentSpecifications.nameContains(keyword));
+    
+    return equipmentRepository
+            .findAll(specification)
+            .stream()
+            .map(this::buildResponse)
+            .toList();
     }
 
     @Override

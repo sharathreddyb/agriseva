@@ -74,11 +74,16 @@ class EquipmentControllerTest {
     }
 
     @Test
-    void getAllActiveShouldReturnEquipmentList()
+    void searchWithoutFiltersShouldReturnEquipmentList()
             throws Exception {
 
-        when(equipmentService.getAllActive())
-                .thenReturn(List.of(createResponse()));
+        when(equipmentService.search(
+                null,
+                null,
+                null,
+                null,
+                null
+        )).thenReturn(List.of(createResponse()));
 
         mockMvc.perform(get("/api/equipment"))
                 .andExpect(status().isOk())
@@ -130,6 +135,29 @@ class EquipmentControllerTest {
                 .andExpect(jsonPath("$.message")
                         .value("Request validation failed"));
     }
+
+    @Test
+    void searchShouldPassFiltersToService()
+            throws Exception {
+    
+        when(equipmentService.search(
+                EquipmentCategory.TRACTOR,
+                "Siddipet",
+                "Chinnagundavelly",
+                EquipmentStatus.AVAILABLE,
+                "Mahindra"
+        )).thenReturn(List.of(createResponse()));
+    
+        mockMvc.perform(get("/api/equipment")
+                        .param("category", "TRACTOR")
+                        .param("district", "Siddipet")
+                        .param("village", "Chinnagundavelly")
+                        .param("status", "AVAILABLE")
+                        .param("keyword", "Mahindra"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[0].name")
+                        .value("Mahindra Tractor"));
+    }    
 
     private EquipmentResponse createResponse() {
         return EquipmentResponse.builder()

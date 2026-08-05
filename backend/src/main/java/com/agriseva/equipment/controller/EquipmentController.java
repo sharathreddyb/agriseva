@@ -2,6 +2,8 @@ package com.agriseva.equipment.controller;
 
 import com.agriseva.equipment.dto.EquipmentRequest;
 import com.agriseva.equipment.dto.EquipmentResponse;
+import com.agriseva.equipment.model.EquipmentCategory;
+import com.agriseva.equipment.model.EquipmentStatus;
 import com.agriseva.equipment.service.EquipmentService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -11,6 +13,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
+import com.agriseva.equipment.model.EquipmentCategory;
+import com.agriseva.equipment.model.EquipmentStatus;
 
 @RestController
 @RequestMapping("/api/equipment")
@@ -72,9 +77,30 @@ public class EquipmentController {
     }
 
     @GetMapping
-    public ResponseEntity<List<EquipmentResponse>> getAllActive() {
+    public ResponseEntity<List<EquipmentResponse>> search(
+            @RequestParam(required = false)
+            EquipmentCategory category,
+    
+            @RequestParam(required = false)
+            String district,
+    
+            @RequestParam(required = false)
+            String village,
+    
+            @RequestParam(required = false)
+            EquipmentStatus status,
+    
+            @RequestParam(required = false)
+            String keyword
+    ) {
         return ResponseEntity.ok(
-                equipmentService.getAllActive()
+                equipmentService.search(
+                        category,
+                        district,
+                        village,
+                        status,
+                        keyword
+                )
         );
     }
 
