@@ -19,6 +19,11 @@ import java.time.LocalDateTime;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import com.agriseva.rental.exception.EquipmentUnavailableForRentalException;
+import com.agriseva.rental.exception.InvalidRentalDatesException;
+import com.agriseva.rental.exception.InvalidRentalStatusException;
+import com.agriseva.rental.exception.RentalNotFoundException;
+
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
@@ -112,7 +117,43 @@ public class GlobalExceptionHandler {
                 .status(HttpStatus.FORBIDDEN)
                 .body(response);
     }
-
+    @ExceptionHandler(RentalNotFoundException.class)
+    public ResponseEntity<ApiErrorResponse> handleRentalNotFound(
+            RentalNotFoundException exception,
+            HttpServletRequest request
+    ) {
+        ApiErrorResponse response = buildErrorResponse(
+                HttpStatus.NOT_FOUND,
+                exception.getMessage(),
+                request.getRequestURI(),
+                null
+        );
+    
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .body(response);
+    }
+    
+    @ExceptionHandler({
+            InvalidRentalDatesException.class,
+            InvalidRentalStatusException.class,
+            EquipmentUnavailableForRentalException.class
+    })
+    public ResponseEntity<ApiErrorResponse> handleRentalBadRequest(
+            RuntimeException exception,
+            HttpServletRequest request
+    ) {
+        ApiErrorResponse response = buildErrorResponse(
+                HttpStatus.BAD_REQUEST,
+                exception.getMessage(),
+                request.getRequestURI(),
+                null
+        );
+    
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body(response);
+    }
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ApiErrorResponse> handleValidationErrors(
             MethodArgumentNotValidException exception,
