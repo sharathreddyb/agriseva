@@ -24,6 +24,10 @@ import com.agriseva.rental.exception.InvalidRentalDatesException;
 import com.agriseva.rental.exception.InvalidRentalStatusException;
 import com.agriseva.rental.exception.RentalNotFoundException;
 
+import com.agriseva.product.exception.ProductAccessDeniedException;
+import com.agriseva.product.exception.ProductNotFoundException;
+import com.agriseva.product.exception.ProductSellerRoleRequiredException;
+
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
@@ -154,6 +158,43 @@ public class GlobalExceptionHandler {
                 .status(HttpStatus.BAD_REQUEST)
                 .body(response);
     }
+
+    @ExceptionHandler(ProductNotFoundException.class)
+    public ResponseEntity<ApiErrorResponse> handleProductNotFound(
+            ProductNotFoundException exception,
+            HttpServletRequest request
+    ) {
+        ApiErrorResponse response = buildErrorResponse(
+                HttpStatus.NOT_FOUND,
+                exception.getMessage(),
+                request.getRequestURI(),
+                null
+        );
+    
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .body(response);
+    }
+    
+    @ExceptionHandler({
+            ProductAccessDeniedException.class,
+            ProductSellerRoleRequiredException.class
+    })
+    public ResponseEntity<ApiErrorResponse> handleProductForbidden(
+            RuntimeException exception,
+            HttpServletRequest request
+    ) {
+        ApiErrorResponse response = buildErrorResponse(
+                HttpStatus.FORBIDDEN,
+                exception.getMessage(),
+                request.getRequestURI(),
+                null
+        );
+    
+        return ResponseEntity
+                .status(HttpStatus.FORBIDDEN)
+                .body(response);
+    }    
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ApiErrorResponse> handleValidationErrors(
             MethodArgumentNotValidException exception,
