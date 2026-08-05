@@ -1,6 +1,9 @@
 package com.agriseva.common.exception;
 
 import com.agriseva.auth.exception.InvalidCredentialsException;
+import com.agriseva.equipment.exception.EquipmentAccessDeniedException;
+import com.agriseva.equipment.exception.EquipmentNotFoundException;
+import com.agriseva.equipment.exception.EquipmentOwnerRoleRequiredException;
 import com.agriseva.user.exception.EmailAlreadyExistsException;
 import com.agriseva.user.exception.PhoneNumberAlreadyExistsException;
 import com.agriseva.user.exception.RoleNotFoundException;
@@ -34,7 +37,9 @@ public class GlobalExceptionHandler {
                 null
         );
 
-        return ResponseEntity.status(HttpStatus.CONFLICT).body(response);
+        return ResponseEntity
+                .status(HttpStatus.CONFLICT)
+                .body(response);
     }
 
     @ExceptionHandler(RoleNotFoundException.class)
@@ -71,6 +76,43 @@ public class GlobalExceptionHandler {
                 .body(response);
     }
 
+    @ExceptionHandler(EquipmentNotFoundException.class)
+    public ResponseEntity<ApiErrorResponse> handleEquipmentNotFound(
+            EquipmentNotFoundException exception,
+            HttpServletRequest request
+    ) {
+        ApiErrorResponse response = buildErrorResponse(
+                HttpStatus.NOT_FOUND,
+                exception.getMessage(),
+                request.getRequestURI(),
+                null
+        );
+
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .body(response);
+    }
+
+    @ExceptionHandler({
+            EquipmentAccessDeniedException.class,
+            EquipmentOwnerRoleRequiredException.class
+    })
+    public ResponseEntity<ApiErrorResponse> handleEquipmentForbidden(
+            RuntimeException exception,
+            HttpServletRequest request
+    ) {
+        ApiErrorResponse response = buildErrorResponse(
+                HttpStatus.FORBIDDEN,
+                exception.getMessage(),
+                request.getRequestURI(),
+                null
+        );
+
+        return ResponseEntity
+                .status(HttpStatus.FORBIDDEN)
+                .body(response);
+    }
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ApiErrorResponse> handleValidationErrors(
             MethodArgumentNotValidException exception,
@@ -78,7 +120,10 @@ public class GlobalExceptionHandler {
     ) {
         Map<String, String> fieldErrors = new LinkedHashMap<>();
 
-        for (FieldError fieldError : exception.getBindingResult().getFieldErrors()) {
+        for (FieldError fieldError : exception
+                .getBindingResult()
+                .getFieldErrors()) {
+
             fieldErrors.putIfAbsent(
                     fieldError.getField(),
                     fieldError.getDefaultMessage()
@@ -92,7 +137,9 @@ public class GlobalExceptionHandler {
                 fieldErrors
         );
 
-        return ResponseEntity.badRequest().body(response);
+        return ResponseEntity
+                .badRequest()
+                .body(response);
     }
 
     private ApiErrorResponse buildErrorResponse(
