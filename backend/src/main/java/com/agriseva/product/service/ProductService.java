@@ -2,8 +2,15 @@ package com.agriseva.product.service;
 
 import com.agriseva.product.dto.ProductRequest;
 import com.agriseva.product.dto.ProductResponse;
+import com.agriseva.product.model.ProductCategory;
 
+import java.math.BigDecimal;
 import java.util.List;
+
+import com.agriseva.product.model.ProductCategory;
+
+import java.math.BigDecimal;
+
 
 public interface ProductService {
 
@@ -25,7 +32,15 @@ public interface ProductService {
 
     ProductResponse getById(Long productId);
 
-    List<ProductResponse> getAllActiveProducts();
+    List<ProductResponse> search(
+            ProductCategory category,
+            String district,
+            String village,
+            String keyword,
+            BigDecimal minPrice,
+            BigDecimal maxPrice,
+            Boolean inStock
+    );
 
     List<ProductResponse> getMyProducts(
             String authenticatedEmail
