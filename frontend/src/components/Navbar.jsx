@@ -17,6 +17,10 @@ function Navbar() {
       <nav className="nav-links">
         <Link to="/">Home</Link>
 
+        <Link to="/equipment">
+          Equipment
+        </Link>
+
         {isAuthenticated ? (
           <>
             <span className="welcome-text">
