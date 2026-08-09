@@ -280,3 +280,251 @@
     grid-template-columns: 1fr;
   }
 }
+
+.equipment-page {
+  min-height: calc(100vh - 72px);
+  background: #f7f8f5;
+}
+
+.equipment-header {
+  padding: 55px 8%;
+  background: linear-gradient(
+    120deg,
+    #ecf7ed,
+    #f9faf7
+  );
+}
+
+.equipment-header > div {
+  max-width: 760px;
+}
+
+.equipment-header h1 {
+  margin: 8px 0 12px;
+  color: #173d25;
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+
+.equipment-header p {
+  color: #6b7280;
+  line-height: 1.7;
+}
+
+.equipment-label {
+  margin: 0;
+  color: #2f7d4b !important;
+  font-size: 0.85rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.equipment-content {
+  padding: 40px 8% 70px;
+}
+
+.equipment-filters {
+  padding: 24px;
+  margin-bottom: 35px;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+}
+
+.equipment-filter-grid {
+  display: grid;
+  grid-template-columns:
+    repeat(5, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.equipment-filter-grid label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: #374151;
+  font-weight: 600;
+}
+
+.equipment-filter-grid input,
+.equipment-filter-grid select {
+  width: 100%;
+  padding: 11px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background: white;
+  outline: none;
+}
+
+.equipment-filter-grid input:focus,
+.equipment-filter-grid select:focus {
+  border-color: #2f7d4b;
+  box-shadow: 0 0 0 3px
+    rgba(47, 125, 75, 0.1);
+}
+
+.equipment-filter-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.equipment-filter-actions button {
+  border: none;
+  cursor: pointer;
+}
+
+.equipment-filter-actions
+  .secondary-button {
+  border: 1px solid #2f7d4b;
+}
+
+.equipment-grid {
+  display: grid;
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.equipment-card {
+  overflow: hidden;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  box-shadow: 0 8px 24px
+    rgba(30, 60, 40, 0.05);
+}
+
+.equipment-image {
+  height: 190px;
+  background: #eaf3eb;
+}
+
+.equipment-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.equipment-image-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #4f765d;
+  font-weight: 700;
+}
+
+.equipment-card-body {
+  padding: 22px;
+}
+
+.equipment-card-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+}
+
+.equipment-category {
+  color: #2f7d4b;
+  font-size: 0.8rem;
+  font-weight: 800;
+}
+
+.status-available,
+.status-unavailable {
+  padding: 5px 9px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.status-available {
+  color: #166534;
+  background: #dcfce7;
+}
+
+.status-unavailable {
+  color: #991b1b;
+  background: #fee2e2;
+}
+
+.equipment-card h2 {
+  margin: 14px 0 10px;
+  color: #173d25;
+}
+
+.equipment-description {
+  min-height: 48px;
+  color: #6b7280;
+  line-height: 1.5;
+}
+
+.equipment-price {
+  margin: 18px 0 6px;
+  color: #1f6a3d;
+  font-size: 1.35rem;
+  font-weight: 800;
+}
+
+.equipment-price span {
+  color: #6b7280;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.equipment-deposit,
+.equipment-location,
+.equipment-owner {
+  color: #6b7280;
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+.equipment-location {
+  margin-top: 15px;
+}
+
+.equipment-message,
+.equipment-empty {
+  padding: 40px;
+  text-align: center;
+  color: #6b7280;
+}
+
+.equipment-empty {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+}
+
+.equipment-empty h2 {
+  color: #173d25;
+}
+
+@media (max-width: 1100px) {
+  .equipment-filter-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+  .equipment-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 700px) {
+  .equipment-header,
+  .equipment-content {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .equipment-filter-grid,
+  .equipment-grid {
+    grid-template-columns: 1fr;
+  }
+}
