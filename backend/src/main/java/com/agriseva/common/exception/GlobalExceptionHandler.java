@@ -22,6 +22,10 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import com.agriseva.order.exception.InsufficientProductStockException;
+import com.agriseva.order.exception.InvalidOrderStatusException;
+import com.agriseva.order.exception.ProductOrderAccessDeniedException;
+import com.agriseva.order.exception.ProductOrderNotFoundException;
 
 import java.time.LocalDateTime;
 import java.util.LinkedHashMap;
@@ -240,7 +244,61 @@ public class GlobalExceptionHandler {
                 .status(HttpStatus.BAD_REQUEST)
                 .body(response);
     }    
+
+    @ExceptionHandler(ProductOrderNotFoundException.class)
+    public ResponseEntity<ApiErrorResponse> handleProductOrderNotFound(
+            ProductOrderNotFoundException exception,
+            HttpServletRequest request
+    ) {
+        ApiErrorResponse response = buildErrorResponse(
+                HttpStatus.NOT_FOUND,
+                exception.getMessage(),
+                request.getRequestURI(),
+                null
+        );
     
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .body(response);
+    }
+    
+    @ExceptionHandler({
+            InsufficientProductStockException.class,
+            InvalidOrderStatusException.class
+    })
+    public ResponseEntity<ApiErrorResponse> handleProductOrderBadRequest(
+            RuntimeException exception,
+            HttpServletRequest request
+    ) {
+        ApiErrorResponse response = buildErrorResponse(
+                HttpStatus.BAD_REQUEST,
+                exception.getMessage(),
+                request.getRequestURI(),
+                null
+        );
+    
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body(response);
+    }
+    
+    @ExceptionHandler(ProductOrderAccessDeniedException.class)
+    public ResponseEntity<ApiErrorResponse> handleProductOrderForbidden(
+            ProductOrderAccessDeniedException exception,
+            HttpServletRequest request
+    ) {
+        ApiErrorResponse response = buildErrorResponse(
+                HttpStatus.FORBIDDEN,
+                exception.getMessage(),
+                request.getRequestURI(),
+                null
+        );
+    
+        return ResponseEntity
+                .status(HttpStatus.FORBIDDEN)
+                .body(response);
+    }
+
     private ApiErrorResponse buildErrorResponse(
             HttpStatus status,
             String message,
