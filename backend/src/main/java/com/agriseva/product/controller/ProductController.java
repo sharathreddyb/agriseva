@@ -12,6 +12,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import com.agriseva.product.model.ProductCategory;
+
+import java.math.BigDecimal;
+
 @RestController
 @RequestMapping("/api/products")
 @RequiredArgsConstructor
@@ -72,13 +76,40 @@ public class ProductController {
     }
 
     @GetMapping
-    public ResponseEntity<List<ProductResponse>>
-    getAllActiveProducts() {
+    public ResponseEntity<List<ProductResponse>> search(
+            @RequestParam(required = false)
+            ProductCategory category,
+    
+            @RequestParam(required = false)
+            String district,
+    
+            @RequestParam(required = false)
+            String village,
+    
+            @RequestParam(required = false)
+            String keyword,
+    
+            @RequestParam(required = false)
+            BigDecimal minPrice,
+    
+            @RequestParam(required = false)
+            BigDecimal maxPrice,
+    
+            @RequestParam(required = false)
+            Boolean inStock
+    ) {
         return ResponseEntity.ok(
-                productService.getAllActiveProducts()
+                productService.search(
+                        category,
+                        district,
+                        village,
+                        keyword,
+                        minPrice,
+                        maxPrice,
+                        inStock
+                )
         );
     }
-
     @GetMapping("/mine")
     public ResponseEntity<List<ProductResponse>> getMyProducts(
             Authentication authentication

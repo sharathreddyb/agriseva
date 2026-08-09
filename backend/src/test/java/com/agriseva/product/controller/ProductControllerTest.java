@@ -2,6 +2,7 @@ package com.agriseva.product.controller;
 
 import com.agriseva.common.exception.GlobalExceptionHandler;
 import com.agriseva.product.dto.ProductResponse;
+import com.agriseva.product.exception.InvalidProductSearchException;
 import com.agriseva.product.exception.ProductNotFoundException;
 import com.agriseva.product.model.ProductCategory;
 import com.agriseva.product.model.ProductUnit;
@@ -24,6 +25,7 @@ import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
 
 @ExtendWith(MockitoExtension.class)
 class ProductControllerTest {
@@ -82,10 +84,19 @@ class ProductControllerTest {
     @Test
     void getAllActiveProductsShouldReturnProductList()
             throws Exception {
-
-        when(productService.getAllActiveProducts())
-                .thenReturn(List.of(createResponse()));
-
+    
+        ProductResponse response = createResponse();
+    
+        when(productService.search(
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+        )).thenReturn(List.of(response));
+    
         mockMvc.perform(get("/api/products"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].id")
@@ -170,6 +181,70 @@ class ProductControllerTest {
                         .value(20))
                 .andExpect(jsonPath("$[0].sellerId")
                         .value(1));
+    }
+
+    @Test
+    void searchShouldAcceptProductFilters()
+            throws Exception {
+    
+        ProductResponse response = createResponse();
+    
+        when(productService.search(
+                ProductCategory.FERTILIZER,
+                "Siddipet",
+                "Chinnagundavelly",
+                "Organic",
+                new BigDecimal("500.00"),
+                new BigDecimal("1000.00"),
+                true
+        )).thenReturn(List.of(response));
+    
+        mockMvc.perform(get("/api/products")
+                        .param("category", "FERTILIZER")
+                        .param("district", "Siddipet")
+                        .param(
+                                "village",
+                                "Chinnagundavelly"
+                        )
+                        .param("keyword", "Organic")
+                        .param("minPrice", "500.00")
+                        .param("maxPrice", "1000.00")
+                        .param("inStock", "true"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[0].id")
+                        .value(20))
+                .andExpect(jsonPath("$[0].name")
+                        .value("Organic Fertilizer"))
+                .andExpect(jsonPath("$[0].category")
+                        .value("FERTILIZER"));
+    }    
+
+    @Test
+    void searchShouldRejectInvalidPriceRange()
+            throws Exception {
+    
+        when(productService.search(
+                null,
+                null,
+                null,
+                null,
+                new BigDecimal("1000.00"),
+                new BigDecimal("500.00"),
+                null
+        )).thenThrow(
+                new InvalidProductSearchException(
+                        "Minimum price cannot be greater than maximum price"
+                )
+        );
+    
+        mockMvc.perform(get("/api/products")
+                        .param("minPrice", "1000.00")
+                        .param("maxPrice", "500.00"))
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.message")
+                        .value(
+                                "Minimum price cannot be greater than maximum price"
+                        ));
     }
 
     private ProductResponse createResponse() {

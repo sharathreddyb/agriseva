@@ -33,32 +33,49 @@ public class SecurityBeansConfig {
     }
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http)
-            throws Exception {
+    public SecurityFilterChain securityFilterChain(
+            HttpSecurity http
+    ) throws Exception {
 
         http
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session
-                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                        .sessionCreationPolicy(
+                                SessionCreationPolicy.STATELESS
+                        )
                 )
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(
                                 "/api/users/register",
                                 "/api/auth/login"
                         ).permitAll()
+
                         .requestMatchers(
                                 HttpMethod.GET,
-                                "/api/equipment/mine"
+                                "/api/equipment/mine",
+                                "/api/products/mine"
                         ).authenticated()
+
                         .requestMatchers(
                                 HttpMethod.GET,
                                 "/api/equipment",
                                 "/api/equipment/*"
                         ).permitAll()
+
+                        .requestMatchers(
+                                HttpMethod.GET,
+                                "/api/products",
+                                "/api/products/*"
+                        ).permitAll()
+
                         .anyRequest().authenticated()
                 )
-                .httpBasic(httpBasic -> httpBasic.disable())
-                .formLogin(formLogin -> formLogin.disable())
+                .httpBasic(httpBasic ->
+                        httpBasic.disable()
+                )
+                .formLogin(formLogin ->
+                        formLogin.disable()
+                )
                 .addFilterBefore(
                         jwtAuthenticationFilter,
                         UsernamePasswordAuthenticationFilter.class

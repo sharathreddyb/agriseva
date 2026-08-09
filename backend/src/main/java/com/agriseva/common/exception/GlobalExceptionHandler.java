@@ -4,6 +4,14 @@ import com.agriseva.auth.exception.InvalidCredentialsException;
 import com.agriseva.equipment.exception.EquipmentAccessDeniedException;
 import com.agriseva.equipment.exception.EquipmentNotFoundException;
 import com.agriseva.equipment.exception.EquipmentOwnerRoleRequiredException;
+import com.agriseva.product.exception.InvalidProductSearchException;
+import com.agriseva.product.exception.ProductAccessDeniedException;
+import com.agriseva.product.exception.ProductNotFoundException;
+import com.agriseva.product.exception.ProductSellerRoleRequiredException;
+import com.agriseva.rental.exception.EquipmentUnavailableForRentalException;
+import com.agriseva.rental.exception.InvalidRentalDatesException;
+import com.agriseva.rental.exception.InvalidRentalStatusException;
+import com.agriseva.rental.exception.RentalNotFoundException;
 import com.agriseva.user.exception.EmailAlreadyExistsException;
 import com.agriseva.user.exception.PhoneNumberAlreadyExistsException;
 import com.agriseva.user.exception.RoleNotFoundException;
@@ -18,15 +26,6 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import java.time.LocalDateTime;
 import java.util.LinkedHashMap;
 import java.util.Map;
-
-import com.agriseva.rental.exception.EquipmentUnavailableForRentalException;
-import com.agriseva.rental.exception.InvalidRentalDatesException;
-import com.agriseva.rental.exception.InvalidRentalStatusException;
-import com.agriseva.rental.exception.RentalNotFoundException;
-
-import com.agriseva.product.exception.ProductAccessDeniedException;
-import com.agriseva.product.exception.ProductNotFoundException;
-import com.agriseva.product.exception.ProductSellerRoleRequiredException;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
@@ -224,6 +223,24 @@ public class GlobalExceptionHandler {
                 .body(response);
     }
 
+    @ExceptionHandler(InvalidProductSearchException.class)
+    public ResponseEntity<ApiErrorResponse>
+    handleInvalidProductSearch(
+            InvalidProductSearchException exception,
+            HttpServletRequest request
+    ) {
+        ApiErrorResponse response = buildErrorResponse(
+                HttpStatus.BAD_REQUEST,
+                exception.getMessage(),
+                request.getRequestURI(),
+                null
+        );
+    
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body(response);
+    }    
+    
     private ApiErrorResponse buildErrorResponse(
             HttpStatus status,
             String message,

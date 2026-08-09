@@ -2,18 +2,23 @@ package com.agriseva.product.service;
 
 import com.agriseva.product.dto.ProductRequest;
 import com.agriseva.product.dto.ProductResponse;
+import com.agriseva.product.exception.InvalidProductSearchException;
 import com.agriseva.product.exception.ProductAccessDeniedException;
 import com.agriseva.product.exception.ProductNotFoundException;
 import com.agriseva.product.exception.ProductSellerRoleRequiredException;
 import com.agriseva.product.model.Product;
+import com.agriseva.product.model.ProductCategory;
 import com.agriseva.product.repository.ProductRepository;
+import com.agriseva.product.specification.ProductSpecifications;
 import com.agriseva.user.model.RoleType;
 import com.agriseva.user.model.User;
 import com.agriseva.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Service
@@ -109,11 +114,40 @@ public class ProductServiceImpl implements ProductService {
         return buildResponse(product);
     }
 
-    @Override
-    @Transactional(readOnly = true)
-    public List<ProductResponse> getAllActiveProducts() {
+     @Override
+     @Transactional(readOnly = true)
+     public List<ProductResponse> search(
+             ProductCategory category,
+             String district,
+             String village,
+             String keyword,
+             BigDecimal minPrice,
+             BigDecimal maxPrice,
+             Boolean inStock
+     ) {
+         if (minPrice != null
+                 && maxPrice != null
+                 && minPrice.compareTo(maxPrice) > 0) {
+     
+             throw new InvalidProductSearchException(
+                     "Minimum price cannot be greater than maximum price"
+             );
+         }
+     
+         Specification<Product> specification =
+                 ProductSpecifications.isActive()
+                        .and(ProductSpecifications.hasCategory(category))
+                        .and(ProductSpecifications.hasDistrict(district))
+                        .and(ProductSpecifications.hasVillage(village))
+                        .and(ProductSpecifications.nameContains(keyword))
+                        .and(ProductSpecifications
+                                .priceGreaterThanOrEqualTo(minPrice))
+                        .and(ProductSpecifications
+                                .priceLessThanOrEqualTo(maxPrice))
+                        .and(ProductSpecifications.isInStock(inStock));
+    
         return productRepository
-                .findByActiveTrueOrderByCreatedAtDesc()
+                .findAll(specification)
                 .stream()
                 .map(this::buildResponse)
                 .toList();

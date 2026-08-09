@@ -2,6 +2,7 @@ package com.agriseva.product.service;
 
 import com.agriseva.product.dto.ProductRequest;
 import com.agriseva.product.dto.ProductResponse;
+import com.agriseva.product.exception.InvalidProductSearchException;
 import com.agriseva.product.exception.ProductAccessDeniedException;
 import com.agriseva.product.exception.ProductSellerRoleRequiredException;
 import com.agriseva.product.model.Product;
@@ -17,6 +18,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.data.jpa.domain.Specification;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -25,6 +27,7 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
+
 
 @ExtendWith(MockitoExtension.class)
 class ProductServiceImplTest {
@@ -166,22 +169,83 @@ class ProductServiceImplTest {
         Product product = createProduct(seller);
         product.setId(20L);
 
-        when(productRepository
-                .findByActiveTrueOrderByCreatedAtDesc())
-                .thenReturn(List.of(product));
+        when(productRepository.findAll(
+                any(Specification.class)
+        )).thenReturn(List.of(product));
+        
+        List<ProductResponse> result =
+                productService.search(
+                        null,
+                        null,
+                        null,
+                        null,
+                        null,
+                        null,
+                        null
+                );
 
-        List<ProductResponse> responses =
-                productService.getAllActiveProducts();
-
-        assertEquals(1, responses.size());
+        assertEquals(1, result.size());
         assertEquals(
                 "Organic Fertilizer",
-                responses.get(0).getName()
+                result.get(0).getName()
         );
         assertEquals(
                 ProductCategory.FERTILIZER,
-                responses.get(0).getCategory()
+                result.get(0).getCategory()
         );
+    }
+    
+    @Test
+    void searchShouldFilterProducts() {
+        User seller = createSeller();
+    
+        Product product = createProduct(seller);
+        product.setId(20L);
+    
+        when(productRepository.findAll(
+                any(Specification.class)
+        )).thenReturn(List.of(product));
+    
+        List<ProductResponse> result =
+                productService.search(
+                        ProductCategory.FERTILIZER,
+                        "Siddipet",
+                        "Chinnagundavelly",
+                        "Organic",
+                        new BigDecimal("500.00"),
+                        new BigDecimal("1000.00"),
+                        true
+                );
+    
+        assertEquals(1, result.size());
+        assertEquals(20L, result.get(0).getId());
+        assertEquals(
+                "Organic Fertilizer",
+                result.get(0).getName()
+        );
+    
+        verify(productRepository).findAll(
+                any(Specification.class)
+        );
+    }    
+
+    @Test
+    void searchShouldRejectInvalidPriceRange() {
+    
+        assertThrows(
+                InvalidProductSearchException.class,
+                () -> productService.search(
+                        null,
+                        null,
+                        null,
+                        null,
+                        new BigDecimal("1000.00"),
+                        new BigDecimal("500.00"),
+                        null
+                )
+        );
+    
+        verifyNoInteractions(productRepository);
     }
 
     private User createSeller() {
