@@ -528,3 +528,300 @@
     grid-template-columns: 1fr;
   }
 }
+
+.equipment-card-actions {
+  margin-top: 20px;
+}
+
+.rent-button {
+  width: 100%;
+  padding: 12px 16px;
+  border: none;
+  border-radius: 8px;
+  background: #2f7d4b;
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.rent-button:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+}
+
+.rental-page {
+  min-height: calc(100vh - 72px);
+  padding: 50px 20px;
+  background: #f7f8f5;
+}
+
+.rental-form-card {
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 36px;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  box-shadow: 0 12px 30px
+    rgba(30, 60, 40, 0.07);
+}
+
+.rental-heading h1 {
+  margin: 8px 0;
+  color: #173d25;
+}
+
+.rental-heading > p:last-child {
+  color: #6b7280;
+}
+
+.rental-equipment-summary {
+  display: grid;
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin: 28px 0;
+  padding: 20px;
+  background: #f4f8f4;
+  border-radius: 12px;
+}
+
+.rental-equipment-summary div,
+.rental-details-grid div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.rental-equipment-summary span,
+.rental-details-grid span {
+  color: #6b7280;
+  font-size: 0.85rem;
+}
+
+.auth-form textarea {
+  width: 100%;
+  padding: 13px 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  resize: vertical;
+  outline: none;
+}
+
+.auth-form textarea:focus {
+  border-color: #2f7d4b;
+  box-shadow: 0 0 0 3px
+    rgba(47, 125, 75, 0.12);
+}
+
+.rental-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.rental-actions
+  .auth-submit-button {
+  margin: 0;
+}
+
+.rentals-page {
+  min-height: calc(100vh - 72px);
+  background: #f7f8f5;
+}
+
+.rentals-header {
+  padding: 50px 8% 30px;
+  background: linear-gradient(
+    120deg,
+    #ecf7ed,
+    #f9faf7
+  );
+}
+
+.rentals-header h1 {
+  margin: 8px 0;
+  color: #173d25;
+}
+
+.rentals-header > p:last-child {
+  color: #6b7280;
+}
+
+.rentals-content {
+  padding: 40px 8% 70px;
+}
+
+.rentals-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.rental-card {
+  padding: 26px;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  box-shadow: 0 8px 24px
+    rgba(30, 60, 40, 0.05);
+}
+
+.rental-card-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.rental-id {
+  margin: 0;
+  color: #6b7280;
+  font-size: 0.85rem;
+}
+
+.rental-card h2 {
+  margin: 5px 0 20px;
+  color: #173d25;
+}
+
+.rental-status {
+  height: fit-content;
+  padding: 6px 11px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+
+.rental-status-pending {
+  color: #92400e;
+  background: #fef3c7;
+}
+
+.rental-status-approved {
+  color: #166534;
+  background: #dcfce7;
+}
+
+.rental-status-rejected,
+.rental-status-cancelled {
+  color: #991b1b;
+  background: #fee2e2;
+}
+
+.rental-status-completed {
+  color: #1e40af;
+  background: #dbeafe;
+}
+
+.rental-details-grid {
+  display: grid;
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.rental-note {
+  margin-top: 22px;
+  padding: 14px 16px;
+  background: #f9fafb;
+  border-radius: 8px;
+}
+
+.rental-note p {
+  margin-bottom: 0;
+  color: #6b7280;
+}
+
+.owner-note {
+  background: #ecf7ed;
+}
+
+.cancel-rental-button {
+  margin-top: 20px;
+  padding: 10px 16px;
+  border: 1px solid #dc2626;
+  border-radius: 8px;
+  background: white;
+  color: #b91c1c;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+@media (max-width: 700px) {
+  .rental-equipment-summary,
+  .rental-details-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .rental-card-header {
+    flex-direction: column;
+  }
+
+  .rentals-header,
+  .rentals-content {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+
+.owner-response-section {
+  margin-top: 22px;
+  padding-top: 20px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.owner-response-section label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-weight: 600;
+}
+
+.owner-response-section textarea {
+  width: 100%;
+  padding: 13px 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  resize: vertical;
+  outline: none;
+  font: inherit;
+}
+
+.owner-response-section textarea:focus {
+  border-color: #2f7d4b;
+  box-shadow: 0 0 0 3px
+    rgba(47, 125, 75, 0.12);
+}
+
+.owner-request-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.approve-button,
+.reject-button {
+  padding: 11px 18px;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.approve-button {
+  border: none;
+  background: #2f7d4b;
+  color: white;
+}
+
+.reject-button {
+  border: 1px solid #dc2626;
+  background: white;
+  color: #b91c1c;
+}
+
+.approve-button:disabled,
+.reject-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

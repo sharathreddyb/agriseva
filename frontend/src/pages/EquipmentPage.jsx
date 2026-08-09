@@ -1,7 +1,12 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/useAuth";
 import { searchEquipment } from "../services/equipmentService";
 
 function EquipmentPage() {
+  const navigate = useNavigate();
+  const { isAuthenticated } = useAuth();
+
   const [equipment, setEquipment] = useState([]);
 
   const [filters, setFilters] = useState({
@@ -84,6 +89,15 @@ function EquipmentPage() {
 
     setFilters(emptyFilters);
     loadEquipment(emptyFilters);
+  }
+
+  function handleRent(item) {
+    if (!isAuthenticated) {
+      navigate("/login");
+      return;
+    }
+
+    navigate(`/equipment/${item.id}/rent`);
   }
 
   return (
@@ -334,6 +348,23 @@ function EquipmentPage() {
                   <div className="equipment-owner">
                     <strong>Owner:</strong>{" "}
                     {item.ownerName}
+                  </div>
+
+                  <div className="equipment-card-actions">
+                    <button
+                      type="button"
+                      className="rent-button"
+                      disabled={
+                        item.status !== "AVAILABLE"
+                      }
+                      onClick={() =>
+                        handleRent(item)
+                      }
+                    >
+                      {item.status === "AVAILABLE"
+                        ? "Rent Equipment"
+                        : "Not Available"}
+                    </button>
                   </div>
                 </div>
               </article>
