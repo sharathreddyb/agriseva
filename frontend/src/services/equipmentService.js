@@ -31,3 +31,11 @@ export async function searchEquipment(filters = {}) {
 
   return apiRequest(endpoint);
 }
+
+export async function getEquipmentById(
+  equipmentId
+) {
+  return apiRequest(
+    `/equipment/${equipmentId}`
+  );
+}
