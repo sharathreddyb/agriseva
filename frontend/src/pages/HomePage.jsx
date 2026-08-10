@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
+import { useAuth } from "../context/useAuth";
 
 function HomePage() {
+  const { isAuthenticated } = useAuth();
+
   return (
     <main>
       <section className="hero-section">
@@ -21,46 +24,87 @@ function HomePage() {
           </p>
 
           <div className="hero-actions">
-            <Link
-              to="/register"
-              className="primary-button"
-            >
-              Get Started
-            </Link>
+            {isAuthenticated ? (
+              <>
+                <Link
+                  to="/equipment"
+                  className="primary-button"
+                >
+                  Browse Equipment
+                </Link>
 
-            <Link
-              to="/login"
-              className="secondary-button"
-            >
-              Login
-            </Link>
+                <Link
+                  to="/products"
+                  className="secondary-button"
+                >
+                  Browse Products
+                </Link>
+              </>
+            ) : (
+              <>
+                <Link
+                  to="/register"
+                  className="primary-button"
+                >
+                  Get Started
+                </Link>
+
+                <Link
+                  to="/login"
+                  className="secondary-button"
+                >
+                  Login
+                </Link>
+              </>
+            )}
           </div>
         </div>
       </section>
 
       <section className="feature-section">
-        <div className="feature-card">
+        <Link
+          to="/equipment"
+          className="feature-card feature-card-link"
+        >
           <h2>Rent Equipment</h2>
+
           <p>
             Find tractors, harvesters,
             sprayers and other farm equipment.
           </p>
-        </div>
 
-        <div className="feature-card">
+          <span className="feature-card-action">
+            Browse Equipment →
+          </span>
+        </Link>
+
+        <Link
+          to="/products"
+          className="feature-card feature-card-link"
+        >
           <h2>Buy Products</h2>
+
           <p>
             Search fertilizers, seeds,
             pesticides and farming tools.
           </p>
-        </div>
 
-        <div className="feature-card">
+          <span className="feature-card-action">
+            Browse Products →
+          </span>
+        </Link>
+
+        <div className="feature-card feature-card-disabled">
           <h2>Sell or Rent</h2>
+
           <p>
             Equipment owners and sellers can
             list their services for farmers.
           </p>
+
+          <span className="feature-card-coming-soon">
+            Provider listing coming next
+          </span>
         </div>
       </section>
     </main>

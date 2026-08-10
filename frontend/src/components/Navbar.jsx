@@ -13,6 +13,11 @@ function Navbar() {
       "EQUIPMENT_OWNER"
     );
 
+  const isProductSeller =
+    user?.roles?.includes(
+      "PRODUCT_SELLER"
+    );
+
   return (
     <header className="navbar">
       <Link
@@ -31,15 +36,29 @@ function Navbar() {
           Equipment
         </Link>
 
+        <Link to="/products">
+          Products
+        </Link>
+
         {isAuthenticated ? (
           <>
             <Link to="/rentals">
               My Rentals
             </Link>
 
+            <Link to="/orders">
+              My Orders
+            </Link>
+
             {isEquipmentOwner && (
               <Link to="/owner/rentals">
                 Owner Requests
+              </Link>
+            )}
+
+            {isProductSeller && (
+              <Link to="/seller/orders">
+                Received Orders
               </Link>
             )}
 

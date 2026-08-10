@@ -9,9 +9,13 @@ import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import EquipmentPage from "./pages/EquipmentPage";
+import ProductsPage from "./pages/ProductsPage";
 import RentEquipmentPage from "./pages/RentEquipmentPage";
 import MyRentalsPage from "./pages/MyRentalsPage";
 import OwnerRentalRequestsPage from "./pages/OwnerRentalRequestsPage";
+import OrderProductPage from "./pages/OrderProductPage";
+import MyOrdersPage from "./pages/MyOrdersPage";
+import ReceivedOrdersPage from "./pages/ReceivedOrdersPage";
 import { useAuth } from "./context/useAuth";
 import "./App.css";
 
@@ -65,6 +69,40 @@ function EquipmentOwnerRoute({
   return children;
 }
 
+function ProductSellerRoute({
+  children,
+}) {
+  const {
+    user,
+    isAuthenticated,
+  } = useAuth();
+
+  if (!isAuthenticated) {
+    return (
+      <Navigate
+        to="/login"
+        replace
+      />
+    );
+  }
+
+  const isProductSeller =
+    user?.roles?.includes(
+      "PRODUCT_SELLER"
+    );
+
+  if (!isProductSeller) {
+    return (
+      <Navigate
+        to="/"
+        replace
+      />
+    );
+  }
+
+  return children;
+}
+
 function App() {
   return (
     <BrowserRouter>
@@ -79,6 +117,38 @@ function App() {
         <Route
           path="/equipment"
           element={<EquipmentPage />}
+        />
+
+        <Route
+          path="/products"
+          element={<ProductsPage />}
+        />
+
+        <Route
+          path="/products/:productId/order"
+          element={
+            <ProtectedRoute>
+              <OrderProductPage />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/orders"
+          element={
+            <ProtectedRoute>
+              <MyOrdersPage />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/seller/orders"
+          element={
+            <ProductSellerRoute>
+              <ReceivedOrdersPage />
+            </ProductSellerRoute>
+          }
         />
 
         <Route
