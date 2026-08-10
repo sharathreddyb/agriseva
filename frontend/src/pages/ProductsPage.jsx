@@ -2,9 +2,14 @@ import {
   useEffect,
   useState,
 } from "react";
-import { useNavigate } from "react-router-dom";
+import {
+  useNavigate,
+} from "react-router-dom";
 import { useAuth } from "../context/useAuth";
-import { searchProducts } from "../services/productService";
+import ListingImage from "../components/ListingImage";
+import {
+  searchProducts,
+} from "../services/productService";
 
 function ProductsPage() {
   const navigate = useNavigate();
@@ -82,8 +87,10 @@ function ProductsPage() {
   }
 
   function handleChange(event) {
-    const { name, value } =
-      event.target;
+    const {
+      name,
+      value,
+    } = event.target;
 
     setFilters((current) => ({
       ...current,
@@ -155,9 +162,7 @@ function ProductsPage() {
               <input
                 type="text"
                 name="keyword"
-                value={
-                  filters.keyword
-                }
+                value={filters.keyword}
                 onChange={handleChange}
                 placeholder="Fertilizer, seeds..."
               />
@@ -168,9 +173,7 @@ function ProductsPage() {
 
               <select
                 name="category"
-                value={
-                  filters.category
-                }
+                value={filters.category}
                 onChange={handleChange}
               >
                 <option value="">
@@ -205,9 +208,7 @@ function ProductsPage() {
               <input
                 type="text"
                 name="district"
-                value={
-                  filters.district
-                }
+                value={filters.district}
                 onChange={handleChange}
                 placeholder="Siddipet"
               />
@@ -219,9 +220,7 @@ function ProductsPage() {
               <input
                 type="text"
                 name="village"
-                value={
-                  filters.village
-                }
+                value={filters.village}
                 onChange={handleChange}
                 placeholder="Village"
               />
@@ -233,9 +232,7 @@ function ProductsPage() {
               <input
                 type="number"
                 name="minPrice"
-                value={
-                  filters.minPrice
-                }
+                value={filters.minPrice}
                 onChange={handleChange}
                 min="0"
                 step="0.01"
@@ -249,9 +246,7 @@ function ProductsPage() {
               <input
                 type="number"
                 name="maxPrice"
-                value={
-                  filters.maxPrice
-                }
+                value={filters.maxPrice}
                 onChange={handleChange}
                 min="0"
                 step="0.01"
@@ -264,9 +259,7 @@ function ProductsPage() {
 
               <select
                 name="inStock"
-                value={
-                  filters.inStock
-                }
+                value={filters.inStock}
                 onChange={handleChange}
               >
                 <option value="">
@@ -330,20 +323,14 @@ function ProductsPage() {
                   key={product.id}
                 >
                   <div className="product-image">
-                    {product.imageUrl ? (
-                      <img
-                        src={
-                          product.imageUrl
-                        }
-                        alt={
-                          product.name
-                        }
-                      />
-                    ) : (
-                      <div className="product-image-placeholder">
-                        Product
-                      </div>
-                    )}
+                    <ListingImage
+                      imageUrl={
+                        product.imageUrl
+                      }
+                      alt={product.name}
+                      placeholder="Product"
+                      placeholderClassName="product-image-placeholder"
+                    />
                   </div>
 
                   <div className="product-card-body">
@@ -380,10 +367,10 @@ function ProductsPage() {
 
                     <p className="product-price">
                       ₹{product.price}
+
                       <span>
                         {" "}
-                        /{" "}
-                        {product.unit}
+                        / {product.unit}
                       </span>
                     </p>
 

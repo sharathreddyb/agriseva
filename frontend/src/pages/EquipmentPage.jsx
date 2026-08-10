@@ -1,31 +1,47 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import {
+  useEffect,
+  useState,
+} from "react";
+import {
+  useNavigate,
+} from "react-router-dom";
 import { useAuth } from "../context/useAuth";
-import { searchEquipment } from "../services/equipmentService";
+import ListingImage from "../components/ListingImage";
+import {
+  searchEquipment,
+} from "../services/equipmentService";
 
 function EquipmentPage() {
   const navigate = useNavigate();
-  const { isAuthenticated } = useAuth();
 
-  const [equipment, setEquipment] = useState([]);
+  const { isAuthenticated } =
+    useAuth();
 
-  const [filters, setFilters] = useState({
-    keyword: "",
-    category: "",
-    district: "",
-    village: "",
-    status: "",
-  });
+  const [equipment, setEquipment] =
+    useState([]);
 
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
+  const [filters, setFilters] =
+    useState({
+      keyword: "",
+      category: "",
+      district: "",
+      village: "",
+      status: "",
+    });
+
+  const [loading, setLoading] =
+    useState(true);
+
+  const [error, setError] =
+    useState("");
 
   useEffect(() => {
     let ignore = false;
 
     async function fetchEquipment() {
       try {
-        const response = await searchEquipment();
+        const response =
+          await searchEquipment();
 
         if (!ignore) {
           setEquipment(response || []);
@@ -48,13 +64,17 @@ function EquipmentPage() {
     };
   }, []);
 
-  async function loadEquipment(searchFilters) {
+  async function loadEquipment(
+    searchFilters
+  ) {
     setLoading(true);
     setError("");
 
     try {
       const response =
-        await searchEquipment(searchFilters);
+        await searchEquipment(
+          searchFilters
+        );
 
       setEquipment(response || []);
     } catch (exception) {
@@ -65,7 +85,10 @@ function EquipmentPage() {
   }
 
   function handleChange(event) {
-    const { name, value } = event.target;
+    const {
+      name,
+      value,
+    } = event.target;
 
     setFilters((current) => ({
       ...current,
@@ -75,6 +98,7 @@ function EquipmentPage() {
 
   function handleSearch(event) {
     event.preventDefault();
+
     loadEquipment(filters);
   }
 
@@ -97,7 +121,9 @@ function EquipmentPage() {
       return;
     }
 
-    navigate(`/equipment/${item.id}/rent`);
+    navigate(
+      `/equipment/${item.id}/rent`
+    );
   }
 
   return (
@@ -108,7 +134,9 @@ function EquipmentPage() {
             Farm equipment
           </p>
 
-          <h1>Find Equipment for Rent</h1>
+          <h1>
+            Find Equipment for Rent
+          </h1>
 
           <p>
             Search tractors, harvesters,
@@ -275,7 +303,8 @@ function EquipmentPage() {
             <h2>No equipment found</h2>
 
             <p>
-              Try changing your search filters.
+              Try changing your search
+              filters.
             </p>
           </div>
         ) : (
@@ -286,16 +315,12 @@ function EquipmentPage() {
                 key={item.id}
               >
                 <div className="equipment-image">
-                  {item.imageUrl ? (
-                    <img
-                      src={item.imageUrl}
-                      alt={item.name}
-                    />
-                  ) : (
-                    <div className="equipment-image-placeholder">
-                      Equipment
-                    </div>
-                  )}
+                  <ListingImage
+                    imageUrl={item.imageUrl}
+                    alt={item.name}
+                    placeholder="Equipment"
+                    placeholderClassName="equipment-image-placeholder"
+                  />
                 </div>
 
                 <div className="equipment-card-body">
@@ -306,7 +331,8 @@ function EquipmentPage() {
 
                     <span
                       className={
-                        item.status === "AVAILABLE"
+                        item.status ===
+                        "AVAILABLE"
                           ? "status-available"
                           : "status-unavailable"
                       }
@@ -327,7 +353,8 @@ function EquipmentPage() {
                     <span> / day</span>
                   </p>
 
-                  {item.securityDeposit != null && (
+                  {item.securityDeposit !=
+                    null && (
                     <p className="equipment-deposit">
                       Security deposit: ₹
                       {item.securityDeposit}
@@ -335,18 +362,23 @@ function EquipmentPage() {
                   )}
 
                   <div className="equipment-location">
-                    <strong>Location:</strong>{" "}
+                    <strong>
+                      Location:
+                    </strong>{" "}
                     {[
                       item.village,
                       item.district,
                       item.state,
                     ]
                       .filter(Boolean)
-                      .join(", ") || "Not provided"}
+                      .join(", ") ||
+                      "Not provided"}
                   </div>
 
                   <div className="equipment-owner">
-                    <strong>Owner:</strong>{" "}
+                    <strong>
+                      Owner:
+                    </strong>{" "}
                     {item.ownerName}
                   </div>
 
@@ -355,13 +387,15 @@ function EquipmentPage() {
                       type="button"
                       className="rent-button"
                       disabled={
-                        item.status !== "AVAILABLE"
+                        item.status !==
+                        "AVAILABLE"
                       }
                       onClick={() =>
                         handleRent(item)
                       }
                     >
-                      {item.status === "AVAILABLE"
+                      {item.status ===
+                      "AVAILABLE"
                         ? "Rent Equipment"
                         : "Not Available"}
                     </button>
