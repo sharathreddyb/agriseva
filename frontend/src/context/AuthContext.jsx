@@ -21,7 +21,8 @@ export function AuthProvider({ children }) {
       userId: authResponse.userId,
       fullName: authResponse.fullName,
       email: authResponse.email,
-      phoneNumber: authResponse.phoneNumber,
+      phoneNumber:
+        authResponse.phoneNumber,
       roles: authResponse.roles,
     };
 
@@ -33,8 +34,30 @@ export function AuthProvider({ children }) {
     setUser(userData);
   }
 
+  function updateRoles(roles) {
+    setUser((currentUser) => {
+      if (!currentUser) {
+        return currentUser;
+      }
+
+      const updatedUser = {
+        ...currentUser,
+        roles,
+      };
+
+      localStorage.setItem(
+        "user",
+        JSON.stringify(updatedUser)
+      );
+
+      return updatedUser;
+    });
+  }
+
   function logout() {
-    localStorage.removeItem("accessToken");
+    localStorage.removeItem(
+      "accessToken"
+    );
     localStorage.removeItem("user");
     setUser(null);
   }
@@ -45,7 +68,9 @@ export function AuthProvider({ children }) {
         user,
         login,
         logout,
-        isAuthenticated: Boolean(user),
+        updateRoles,
+        isAuthenticated:
+          Boolean(user),
       }}
     >
       {children}

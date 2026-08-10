@@ -94,7 +94,10 @@ function HomePage() {
           </span>
         </Link>
 
-        <div className="feature-card feature-card-disabled">
+        <Link
+          to="/provider"
+          className="feature-card feature-card-link"
+        >
           <h2>Sell or Rent</h2>
 
           <p>
@@ -102,10 +105,10 @@ function HomePage() {
             list their services for farmers.
           </p>
 
-          <span className="feature-card-coming-soon">
-            Provider listing coming next
+          <span className="feature-card-action">
+            Become a Provider →
           </span>
-        </div>
+        </Link>
       </section>
     </main>
   );

@@ -50,16 +50,32 @@ function Navbar() {
               My Orders
             </Link>
 
+            <Link to="/provider">
+              Sell or Rent
+            </Link>
+
             {isEquipmentOwner && (
-              <Link to="/owner/rentals">
-                Owner Requests
-              </Link>
+              <>
+                <Link to="/provider/equipment">
+                  My Equipment
+                </Link>
+
+                <Link to="/owner/rentals">
+                  Owner Requests
+                </Link>
+              </>
             )}
 
             {isProductSeller && (
-              <Link to="/seller/orders">
-                Received Orders
-              </Link>
+              <>
+                <Link to="/provider/products">
+                  My Products
+                </Link>
+
+                <Link to="/seller/orders">
+                  Received Orders
+                </Link>
+              </>
             )}
 
             <span className="welcome-text">

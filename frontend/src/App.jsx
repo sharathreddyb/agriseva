@@ -18,6 +18,11 @@ import MyOrdersPage from "./pages/MyOrdersPage";
 import ReceivedOrdersPage from "./pages/ReceivedOrdersPage";
 import { useAuth } from "./context/useAuth";
 import "./App.css";
+import ProviderProfilePage from "./pages/ProviderProfilePage";
+import MyProductsPage from "./pages/MyProductsPage";
+import ProductFormPage from "./pages/ProductFormPage";
+import MyEquipmentPage from "./pages/MyEquipmentPage";
+import EquipmentFormPage from "./pages/EquipmentFormPage";
 
 function ProtectedRoute({ children }) {
   const { isAuthenticated } =
@@ -113,6 +118,69 @@ function App() {
           path="/"
           element={<HomePage />}
         />
+
+      <Route
+        path="/provider"
+        element={
+          <ProtectedRoute>
+            <ProviderProfilePage />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/provider/products"
+        element={
+          <ProductSellerRoute>
+            <MyProductsPage />
+          </ProductSellerRoute>
+        }
+      />
+
+      <Route
+        path="/provider/products/new"
+        element={
+          <ProductSellerRoute>
+            <ProductFormPage />
+          </ProductSellerRoute>
+        }
+      />
+
+      <Route
+        path="/provider/products/:productId/edit"
+        element={
+          <ProductSellerRoute>
+            <ProductFormPage />
+          </ProductSellerRoute>
+        }
+      />      
+
+      <Route
+        path="/provider/equipment"
+        element={
+          <EquipmentOwnerRoute>
+            <MyEquipmentPage />
+          </EquipmentOwnerRoute>
+        }
+      />
+
+      <Route
+        path="/provider/equipment/new"
+        element={
+          <EquipmentOwnerRoute>
+            <EquipmentFormPage />
+          </EquipmentOwnerRoute>
+        }
+      />
+
+      <Route
+        path="/provider/equipment/:equipmentId/edit"
+        element={
+          <EquipmentOwnerRoute>
+            <EquipmentFormPage />
+          </EquipmentOwnerRoute>
+        }
+      />
 
         <Route
           path="/equipment"
