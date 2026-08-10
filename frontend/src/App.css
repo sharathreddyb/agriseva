@@ -1405,3 +1405,598 @@
   opacity: 0.6;
   cursor: not-allowed;
 }
+
+.provider-profile-page {
+  min-height: calc(100vh - 70px);
+  background: #f7faf7;
+  padding: 48px 24px;
+}
+
+.provider-profile-header {
+  max-width: 850px;
+  margin: 0 auto 28px;
+}
+
+.provider-profile-header h1 {
+  margin: 6px 0 10px;
+  color: #1f2937;
+}
+
+.provider-profile-header p {
+  color: #6b7280;
+}
+
+.provider-profile-content {
+  max-width: 850px;
+  margin: 0 auto;
+}
+
+.provider-profile-form {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  padding: 28px;
+  box-shadow: 0 8px 24px
+    rgba(30, 60, 40, 0.06);
+}
+
+.provider-user-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-bottom: 18px;
+  margin-bottom: 22px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.provider-user-info span {
+  color: #6b7280;
+  font-size: 0.92rem;
+}
+
+.provider-location-grid {
+  display: grid;
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.provider-profile-form .form-group {
+  margin-bottom: 18px;
+}
+
+.provider-profile-form label {
+  display: block;
+  margin-bottom: 7px;
+  color: #374151;
+  font-weight: 600;
+}
+
+.provider-profile-form input,
+.provider-profile-form select,
+.provider-profile-form textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background: white;
+  color: #1f2937;
+  font: inherit;
+  outline: none;
+}
+
+.provider-profile-form input:focus,
+.provider-profile-form select:focus,
+.provider-profile-form textarea:focus {
+  border-color: #2f7d4b;
+  box-shadow: 0 0 0 3px
+    rgba(47, 125, 75, 0.12);
+}
+
+.provider-profile-form textarea {
+  resize: vertical;
+}
+
+.provider-form-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.success-message {
+  margin-bottom: 20px;
+  padding: 12px 14px;
+  border: 1px solid #86c99a;
+  border-radius: 8px;
+  background: #eefaf1;
+  color: #24633a;
+}
+
+@media (max-width: 700px) {
+  .provider-location-grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .provider-form-actions {
+    flex-direction: column;
+  }
+}
+.my-products-page {
+  min-height: calc(100vh - 70px);
+  background: #f7faf7;
+}
+
+.my-products-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  padding: 48px
+    max(24px, calc((100% - 1450px) / 2));
+  background:
+    linear-gradient(
+      90deg,
+      #eef8f0,
+      #fffaf0
+    );
+}
+
+.my-products-header h1 {
+  margin: 6px 0 8px;
+  color: #174b2a;
+}
+
+.my-products-header p {
+  margin-bottom: 0;
+  color: #6b7280;
+}
+
+.my-products-content {
+  max-width: 1450px;
+  margin: 0 auto;
+  padding: 40px 24px;
+}
+
+.my-products-grid {
+  display: grid;
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.my-product-card {
+  padding: 24px;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  background: white;
+  box-shadow:
+    0 8px 24px
+    rgba(30, 60, 40, 0.06);
+}
+
+.my-product-card-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.my-product-card-header h2 {
+  margin: 5px 0 0;
+  color: #174b2a;
+}
+
+.my-product-description {
+  min-height: 44px;
+  color: #6b7280;
+}
+
+.my-product-details {
+  display: grid;
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 20px;
+  padding-top: 18px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.my-product-details div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.my-product-details span {
+  color: #6b7280;
+  font-size: 0.9rem;
+}
+
+.product-active-badge,
+.product-inactive-badge {
+  height: fit-content;
+  padding: 7px 11px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.product-active-badge {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.product-inactive-badge {
+  background: #f3f4f6;
+  color: #6b7280;
+}
+
+.my-product-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 22px;
+}
+
+.deactivate-product-button {
+  padding: 11px 18px;
+  border: 1px solid #dc2626;
+  border-radius: 8px;
+  background: white;
+  color: #b91c1c;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.deactivate-product-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+@media (max-width: 850px) {
+  .my-products-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .my-products-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .my-product-details {
+    grid-template-columns: 1fr;
+  }
+}
+.product-form-page {
+  min-height: calc(100vh - 70px);
+  background: #f7faf7;
+  padding: 48px 24px;
+}
+
+.product-form-header,
+.product-form-content {
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.product-form-header {
+  margin-bottom: 28px;
+}
+
+.product-form-header h1 {
+  margin: 6px 0 8px;
+  color: #174b2a;
+}
+
+.product-form-header p {
+  color: #6b7280;
+}
+
+.product-management-form {
+  padding: 28px;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  background: white;
+  box-shadow:
+    0 8px 24px
+    rgba(30, 60, 40, 0.06);
+}
+
+.product-management-form .form-group {
+  margin-bottom: 18px;
+}
+
+.product-management-form label {
+  display: block;
+  margin-bottom: 7px;
+  color: #374151;
+  font-weight: 600;
+}
+
+.product-management-form input,
+.product-management-form select,
+.product-management-form textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background: white;
+  font: inherit;
+  outline: none;
+}
+
+.product-management-form input:focus,
+.product-management-form select:focus,
+.product-management-form textarea:focus {
+  border-color: #2f7d4b;
+  box-shadow:
+    0 0 0 3px
+    rgba(47, 125, 75, 0.12);
+}
+
+.product-management-form textarea {
+  resize: vertical;
+}
+
+.product-form-grid {
+  display: grid;
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.product-form-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+@media (max-width: 700px) {
+  .product-form-grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .product-form-actions {
+    flex-direction: column;
+  }
+}
+
+.my-equipment-page {
+  min-height: calc(100vh - 70px);
+  background: #f7faf7;
+}
+
+.my-equipment-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  padding: 48px
+    max(24px, calc((100% - 1450px) / 2));
+  background:
+    linear-gradient(
+      90deg,
+      #eef8f0,
+      #fffaf0
+    );
+}
+
+.my-equipment-header h1 {
+  margin: 6px 0 8px;
+  color: #174b2a;
+}
+
+.my-equipment-header p {
+  margin-bottom: 0;
+  color: #6b7280;
+}
+
+.my-equipment-content {
+  max-width: 1450px;
+  margin: 0 auto;
+  padding: 40px 24px;
+}
+
+.my-equipment-grid {
+  display: grid;
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.my-equipment-card {
+  padding: 24px;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  background: white;
+  box-shadow:
+    0 8px 24px
+    rgba(30, 60, 40, 0.06);
+}
+
+.my-equipment-card-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.my-equipment-card-header h2 {
+  margin: 5px 0 0;
+  color: #174b2a;
+}
+
+.equipment-badges {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.equipment-status-badge {
+  padding: 7px 11px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.equipment-status-available {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.equipment-status-unavailable {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.equipment-status-maintenance {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.my-equipment-description {
+  min-height: 44px;
+  color: #6b7280;
+}
+
+.my-equipment-details {
+  display: grid;
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 20px;
+  padding-top: 18px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.my-equipment-details div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.my-equipment-details span {
+  color: #6b7280;
+  font-size: 0.9rem;
+}
+
+.my-equipment-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 22px;
+}
+
+@media (max-width: 850px) {
+  .my-equipment-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .my-equipment-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .my-equipment-details {
+    grid-template-columns: 1fr;
+  }
+}
+
+.equipment-form-page {
+  min-height: calc(100vh - 70px);
+  background: #f7faf7;
+  padding: 48px 24px;
+}
+
+.equipment-form-header,
+.equipment-form-content {
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.equipment-form-header {
+  margin-bottom: 28px;
+}
+
+.equipment-form-header h1 {
+  margin: 6px 0 8px;
+  color: #174b2a;
+}
+
+.equipment-form-header p {
+  color: #6b7280;
+}
+
+.equipment-management-form {
+  padding: 28px;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  background: white;
+  box-shadow:
+    0 8px 24px
+    rgba(30, 60, 40, 0.06);
+}
+
+.equipment-management-form .form-group {
+  margin-bottom: 18px;
+}
+
+.equipment-management-form label {
+  display: block;
+  margin-bottom: 7px;
+  color: #374151;
+  font-weight: 600;
+}
+
+.equipment-management-form input,
+.equipment-management-form select,
+.equipment-management-form textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background: white;
+  font: inherit;
+  outline: none;
+}
+
+.equipment-management-form input:focus,
+.equipment-management-form select:focus,
+.equipment-management-form textarea:focus {
+  border-color: #2f7d4b;
+  box-shadow:
+    0 0 0 3px
+    rgba(47, 125, 75, 0.12);
+}
+
+.equipment-management-form textarea {
+  resize: vertical;
+}
+
+.equipment-form-grid {
+  display: grid;
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.equipment-form-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+@media (max-width: 700px) {
+  .equipment-form-grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .equipment-form-actions {
+    flex-direction: column;
+  }
+}
