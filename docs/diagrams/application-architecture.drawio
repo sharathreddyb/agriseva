@@ -1,0 +1,85 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Page-1" id="OMJyzLBorH18PT8UEjH8">
+    <mxGraphModel dx="2575" dy="1490" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="4dkM3imy2X4H9iW6lzTK-1" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=28;fontStyle=1;fontColor=#14532d;" value="AgriSeva - Application Architecture Diagram" vertex="1">
+          <mxGeometry height="50" width="920" x="650" y="190" as="geometry" />
+        </mxCell>
+        <mxCell id="4dkM3imy2X4H9iW6lzTK-2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=10;fillColor=#fffdf5;strokeColor=#9a7b26;strokeWidth=2;fontColor=#111827;" value="&lt;div style=&#39;font-size:15px;font-weight:bold;text-align:center&#39;&gt;Users&lt;/div&gt;&lt;hr&gt;&lt;div style=&#39;font-size:12px;line-height:1.45;text-align:left&#39;&gt;Farmer&lt;br&gt;Equipment Owner&lt;br&gt;Product Seller&lt;/div&gt;" vertex="1">
+          <mxGeometry height="120" width="220" x="370" y="330" as="geometry" />
+        </mxCell>
+        <mxCell id="4dkM3imy2X4H9iW6lzTK-3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=10;fillColor=#fffdf5;strokeColor=#9a7b26;strokeWidth=2;fontColor=#111827;" value="&lt;div style=&#39;font-size:15px;font-weight:bold;text-align:center&#39;&gt;Postman&lt;/div&gt;&lt;hr&gt;&lt;div style=&#39;font-size:12px;line-height:1.45;text-align:left&#39;&gt;API testing client&lt;/div&gt;" vertex="1">
+          <mxGeometry height="110" width="220" x="370" y="920" as="geometry" />
+        </mxCell>
+        <mxCell id="4dkM3imy2X4H9iW6lzTK-4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=10;fillColor=#f3f8ff;strokeColor=#3b82f6;strokeWidth=2;fontColor=#111827;" value="&lt;div style=&#39;font-size:15px;font-weight:bold;text-align:center&#39;&gt;React Frontend&lt;/div&gt;&lt;hr&gt;&lt;div style=&#39;font-size:12px;line-height:1.45;text-align:left&#39;&gt;Vite development server&lt;br&gt;React Router&lt;br&gt;Authentication context&lt;br&gt;Pages and reusable components&lt;br&gt;Service layer for API calls&lt;br&gt;Runs locally on localhost:5173&lt;/div&gt;" vertex="1">
+          <mxGeometry height="220" width="360" x="710" y="290" as="geometry" />
+        </mxCell>
+        <mxCell id="4dkM3imy2X4H9iW6lzTK-5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=10;fillColor=#f7fff8;strokeColor=#2f7d4b;strokeWidth=2;fontColor=#111827;" value="&lt;div style=&#39;font-size:15px;font-weight:bold;text-align:center&#39;&gt;Spring Boot Backend&lt;/div&gt;&lt;hr&gt;&lt;div style=&#39;font-size:12px;line-height:1.45;text-align:left&#39;&gt;REST API&lt;br&gt;Runs locally on localhost:8080&lt;/div&gt;" vertex="1">
+          <mxGeometry height="670" width="520" x="1190" y="270" as="geometry" />
+        </mxCell>
+        <mxCell id="4dkM3imy2X4H9iW6lzTK-6" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=10;fillColor=#ffffff;strokeColor=#2f7d4b;strokeWidth=2;fontColor=#111827;" value="&lt;div style=&#39;font-size:14px;font-weight:bold;text-align:center&#39;&gt;Controller Layer&lt;/div&gt;&lt;hr&gt;&lt;div style=&#39;font-size:12px;line-height:1.45;text-align:left&#39;&gt;AuthController&lt;br&gt;User / Provider Profile&lt;br&gt;Equipment / Rentals&lt;br&gt;Products / Orders&lt;/div&gt;" vertex="1">
+          <mxGeometry height="105" width="410" x="1245" y="390" as="geometry" />
+        </mxCell>
+        <mxCell id="4dkM3imy2X4H9iW6lzTK-7" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=10;fillColor=#ffffff;strokeColor=#2f7d4b;strokeWidth=2;fontColor=#111827;" value="&lt;div style=&#39;font-size:14px;font-weight:bold;text-align:center&#39;&gt;Security Layer&lt;/div&gt;&lt;hr&gt;&lt;div style=&#39;font-size:12px;line-height:1.45;text-align:left&#39;&gt;Spring Security&lt;br&gt;JWT authentication and authorization&lt;br&gt;Role-based protected endpoints&lt;/div&gt;" vertex="1">
+          <mxGeometry height="110" width="410" x="1245" y="525" as="geometry" />
+        </mxCell>
+        <mxCell id="4dkM3imy2X4H9iW6lzTK-8" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=10;fillColor=#ffffff;strokeColor=#2f7d4b;strokeWidth=2;fontColor=#111827;" value="&lt;div style=&#39;font-size:14px;font-weight:bold;text-align:center&#39;&gt;Service Layer&lt;/div&gt;&lt;hr&gt;&lt;div style=&#39;font-size:12px;line-height:1.45;text-align:left&#39;&gt;Business rules&lt;br&gt;Workflow validation&lt;br&gt;DTO to entity processing&lt;/div&gt;" vertex="1">
+          <mxGeometry height="105" width="410" x="1245" y="665" as="geometry" />
+        </mxCell>
+        <mxCell id="4dkM3imy2X4H9iW6lzTK-9" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=10;fillColor=#ffffff;strokeColor=#2f7d4b;strokeWidth=2;fontColor=#111827;" value="&lt;div style=&#39;font-size:14px;font-weight:bold;text-align:center&#39;&gt;Repository / Persistence Layer&lt;/div&gt;&lt;hr&gt;&lt;div style=&#39;font-size:12px;line-height:1.45;text-align:left&#39;&gt;Spring Data JPA repositories&lt;br&gt;Hibernate ORM&lt;/div&gt;" vertex="1">
+          <mxGeometry height="100" width="410" x="1245" y="800" as="geometry" />
+        </mxCell>
+        <mxCell id="4dkM3imy2X4H9iW6lzTK-10" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=10;fillColor=#fff7ed;strokeColor=#ea580c;strokeWidth=2;fontColor=#111827;" value="&lt;div style=&#39;font-size:15px;font-weight:bold;text-align:center&#39;&gt;PostgreSQL Database&lt;/div&gt;&lt;hr&gt;&lt;div style=&#39;font-size:12px;line-height:1.45;text-align:left&#39;&gt;Database: agriseva&lt;br&gt;Local port: 5432&lt;br&gt;User, roles, provider profiles&lt;br&gt;Equipment and rentals&lt;br&gt;Products and orders&lt;/div&gt;" vertex="1">
+          <mxGeometry height="170" width="410" x="1200" y="1080" as="geometry" />
+        </mxCell>
+        <mxCell id="4dkM3imy2X4H9iW6lzTK-11" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=10;fillColor=#fffdf5;strokeColor=#9a7b26;strokeWidth=2;dashed=1;fontColor=#111827;" value="&lt;div style=&#39;font-size:15px;font-weight:bold;text-align:center&#39;&gt;Flyway&lt;/div&gt;&lt;hr&gt;&lt;div style=&#39;font-size:12px;line-height:1.45;text-align:left&#39;&gt;Versioned schema migrations&lt;br&gt;V1 to V5&lt;br&gt;Schema validation on startup&lt;/div&gt;" vertex="1">
+          <mxGeometry height="160" width="270" x="1660" y="1060" as="geometry" />
+        </mxCell>
+        <mxCell id="4dkM3imy2X4H9iW6lzTK-12" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=10;fillColor=#f3f8ff;strokeColor=#3b82f6;strokeWidth=2;dashed=1;fontColor=#111827;" value="&lt;div style=&#39;font-size:15px;font-weight:bold;text-align:center&#39;&gt;Docker&lt;/div&gt;&lt;hr&gt;&lt;div style=&#39;font-size:12px;line-height:1.45;text-align:left&#39;&gt;Runs local PostgreSQL container&lt;br&gt;agriseva-postgres&lt;/div&gt;" vertex="1">
+          <mxGeometry height="145" width="270" x="1660" y="1260" as="geometry" />
+        </mxCell>
+        <mxCell id="4dkM3imy2X4H9iW6lzTK-13" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=10;fillColor=#faf5ff;strokeColor=#7c3aed;strokeWidth=2;dashed=1;fontColor=#111827;" value="&lt;div style=&#39;font-size:15px;font-weight:bold;text-align:center&#39;&gt;Git and GitHub&lt;/div&gt;&lt;hr&gt;&lt;div style=&#39;font-size:12px;line-height:1.45;text-align:left&#39;&gt;Source control&lt;br&gt;Feature branch workflow&lt;br&gt;Public project repository&lt;/div&gt;" vertex="1">
+          <mxGeometry height="125" width="360" x="710" y="920" as="geometry" />
+        </mxCell>
+        <mxCell id="4dkM3imy2X4H9iW6lzTK-14" edge="1" parent="1" source="4dkM3imy2X4H9iW6lzTK-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=none;endArrow=block;strokeColor=#374151;strokeWidth=1.8;" target="4dkM3imy2X4H9iW6lzTK-4" value="Browser / UI">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="4dkM3imy2X4H9iW6lzTK-15" edge="1" parent="1" source="4dkM3imy2X4H9iW6lzTK-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=none;endArrow=block;strokeColor=#374151;strokeWidth=1.8;" target="4dkM3imy2X4H9iW6lzTK-5" value="REST / JSON over HTTP">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="4dkM3imy2X4H9iW6lzTK-16" edge="1" parent="1" source="4dkM3imy2X4H9iW6lzTK-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=none;endArrow=block;strokeColor=#374151;strokeWidth=1.8;" target="4dkM3imy2X4H9iW6lzTK-7" value="Protected requests">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="4dkM3imy2X4H9iW6lzTK-17" edge="1" parent="1" source="4dkM3imy2X4H9iW6lzTK-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=none;endArrow=block;strokeColor=#374151;strokeWidth=1.8;" target="4dkM3imy2X4H9iW6lzTK-8" value="Authorized calls">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="4dkM3imy2X4H9iW6lzTK-18" edge="1" parent="1" source="4dkM3imy2X4H9iW6lzTK-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=none;endArrow=block;strokeColor=#374151;strokeWidth=1.8;" target="4dkM3imy2X4H9iW6lzTK-9" value="Business operations">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="4dkM3imy2X4H9iW6lzTK-19" edge="1" parent="1" source="4dkM3imy2X4H9iW6lzTK-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=none;endArrow=block;strokeColor=#374151;strokeWidth=1.8;" target="4dkM3imy2X4H9iW6lzTK-10" value="JPA / Hibernate">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="4dkM3imy2X4H9iW6lzTK-20" edge="1" parent="1" source="4dkM3imy2X4H9iW6lzTK-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=none;endArrow=block;strokeColor=#374151;strokeWidth=1.8;" target="4dkM3imy2X4H9iW6lzTK-5" value="Direct API testing">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="4dkM3imy2X4H9iW6lzTK-21" edge="1" parent="1" source="4dkM3imy2X4H9iW6lzTK-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=none;endArrow=open;strokeColor=#9ca3af;strokeWidth=1.8;dashed=1;" target="4dkM3imy2X4H9iW6lzTK-10" value="Schema migrations">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="4dkM3imy2X4H9iW6lzTK-22" edge="1" parent="1" source="4dkM3imy2X4H9iW6lzTK-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=none;endArrow=open;strokeColor=#9ca3af;strokeWidth=1.8;dashed=1;" target="4dkM3imy2X4H9iW6lzTK-10" value="Hosts local DB">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="4dkM3imy2X4H9iW6lzTK-23" edge="1" parent="1" source="4dkM3imy2X4H9iW6lzTK-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=none;endArrow=open;strokeColor=#9ca3af;strokeWidth=1.8;dashed=1;" target="4dkM3imy2X4H9iW6lzTK-4" value="Source code">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="4dkM3imy2X4H9iW6lzTK-24" edge="1" parent="1" source="4dkM3imy2X4H9iW6lzTK-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=none;endArrow=open;strokeColor=#9ca3af;strokeWidth=1.8;dashed=1;" target="4dkM3imy2X4H9iW6lzTK-5" value="Source code">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="4dkM3imy2X4H9iW6lzTK-25" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=8;strokeColor=#9ca3af;fillColor=#ffffff;fontColor=#374151;" value="&lt;div style=&#39;font-size:13px;font-weight:bold&#39;&gt;Legend&lt;/div&gt;&lt;br&gt;&lt;div style=&#39;font-size:11px&#39;&gt;Solid arrows: runtime request/data flow&lt;br&gt;Dashed arrows: development/infrastructure relationship&lt;/div&gt;" vertex="1">
+          <mxGeometry height="120" width="320" x="370" y="1210" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

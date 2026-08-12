@@ -1,0 +1,15 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: agriseva-postgres
+    environment:
+      POSTGRES_DB: agriseva
+      POSTGRES_USER: agriseva_user
+      POSTGRES_PASSWORD: agriseva_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - agriseva_postgres_data:/var/lib/postgresql/data
+
+volumes:
+  agriseva_postgres_data:

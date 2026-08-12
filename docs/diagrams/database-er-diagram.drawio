@@ -1,0 +1,87 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Page-1" id="i_QnCPiKtJQVSSW0rHYJ">
+    <mxGraphModel dx="3433" dy="1987" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="eXtlm2uXMPQOfzkQaLBF-1" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=28;fontStyle=1;fontColor=#14532d;" value="AgriSeva - Database ER Diagram" vertex="1">
+          <mxGeometry height="50" width="760" x="650" y="190" as="geometry" />
+        </mxCell>
+        <mxCell id="eXtlm2uXMPQOfzkQaLBF-2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=8;strokeColor=#2f7d4b;strokeWidth=2;fillColor=#f7fff8;fontColor=#111827;" value="&lt;div style=&#39;font-size:16px;font-weight:bold;text-align:center&#39;&gt;users&lt;/div&gt;&lt;hr&gt;&lt;div style=&#39;text-align:left;font-size:12px;line-height:1.45&#39;&gt;PK id: BIGSERIAL&lt;br&gt;full_name: VARCHAR(100) NOT NULL&lt;br&gt;email: VARCHAR(150) UNIQUE NOT NULL&lt;br&gt;phone_number: VARCHAR(20) UNIQUE NOT NULL&lt;br&gt;password: VARCHAR(255) NOT NULL&lt;br&gt;address_line: VARCHAR(255)&lt;br&gt;village: VARCHAR(100)&lt;br&gt;district: VARCHAR(100)&lt;br&gt;state: VARCHAR(100)&lt;br&gt;postal_code: VARCHAR(10)&lt;br&gt;active: BOOLEAN NOT NULL DEFAULT TRUE&lt;br&gt;created_at: TIMESTAMP NOT NULL&lt;br&gt;updated_at: TIMESTAMP NOT NULL&lt;/div&gt;" vertex="1">
+          <mxGeometry height="410" width="360" x="810" y="330" as="geometry" />
+        </mxCell>
+        <mxCell id="eXtlm2uXMPQOfzkQaLBF-3" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=8;strokeColor=#2f7d4b;strokeWidth=2;fillColor=#f7fff8;fontColor=#111827;" value="&lt;div style=&#39;font-size:16px;font-weight:bold;text-align:center&#39;&gt;roles&lt;/div&gt;&lt;hr&gt;&lt;div style=&#39;text-align:left;font-size:12px;line-height:1.45&#39;&gt;PK id: BIGSERIAL&lt;br&gt;name: VARCHAR(50) UNIQUE NOT NULL&lt;/div&gt;" vertex="1">
+          <mxGeometry height="150" width="280" x="360" y="330" as="geometry" />
+        </mxCell>
+        <mxCell id="eXtlm2uXMPQOfzkQaLBF-4" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=8;strokeColor=#2f7d4b;strokeWidth=2;fillColor=#f7fff8;fontColor=#111827;" value="&lt;div style=&#39;font-size:16px;font-weight:bold;text-align:center&#39;&gt;user_roles&lt;/div&gt;&lt;hr&gt;&lt;div style=&#39;text-align:left;font-size:12px;line-height:1.45&#39;&gt;PK, FK user_id: BIGINT&lt;br&gt;PK, FK role_id: BIGINT&lt;/div&gt;" vertex="1">
+          <mxGeometry height="160" width="300" x="370" y="580" as="geometry" />
+        </mxCell>
+        <mxCell id="eXtlm2uXMPQOfzkQaLBF-5" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=8;strokeColor=#2f7d4b;strokeWidth=2;fillColor=#f7fff8;fontColor=#111827;" value="&lt;div style=&#39;font-size:16px;font-weight:bold;text-align:center&#39;&gt;provider_profiles&lt;/div&gt;&lt;hr&gt;&lt;div style=&#39;text-align:left;font-size:12px;line-height:1.45&#39;&gt;PK id: BIGSERIAL&lt;br&gt;FK user_id: BIGINT UNIQUE NOT NULL&lt;br&gt;business_name: VARCHAR(150)&lt;br&gt;description: VARCHAR(500)&lt;br&gt;provider_type: VARCHAR(30) NOT NULL&lt;br&gt;verification_status: VARCHAR(30) NOT NULL&lt;br&gt;service_address: VARCHAR(255)&lt;br&gt;village: VARCHAR(100)&lt;br&gt;district: VARCHAR(100)&lt;br&gt;state: VARCHAR(100)&lt;br&gt;postal_code: VARCHAR(10)&lt;br&gt;created_at: TIMESTAMP NOT NULL&lt;br&gt;updated_at: TIMESTAMP NOT NULL&lt;/div&gt;" vertex="1">
+          <mxGeometry height="380" width="390" x="1400" y="310" as="geometry" />
+        </mxCell>
+        <mxCell id="eXtlm2uXMPQOfzkQaLBF-6" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=8;strokeColor=#2f7d4b;strokeWidth=2;fillColor=#f7fff8;fontColor=#111827;" value="&lt;div style=&#39;font-size:16px;font-weight:bold;text-align:center&#39;&gt;equipment&lt;/div&gt;&lt;hr&gt;&lt;div style=&#39;text-align:left;font-size:12px;line-height:1.45&#39;&gt;PK id: BIGSERIAL&lt;br&gt;FK owner_id: BIGINT NOT NULL&lt;br&gt;name: VARCHAR(150) NOT NULL&lt;br&gt;category: VARCHAR(40) NOT NULL&lt;br&gt;description: VARCHAR(1000)&lt;br&gt;rental_price_per_day: NUMERIC(12,2) NOT NULL&lt;br&gt;security_deposit: NUMERIC(12,2) NOT NULL DEFAULT 0&lt;br&gt;status: VARCHAR(30) NOT NULL DEFAULT &amp;#x27;AVAILABLE&amp;#x27;&lt;br&gt;service_address: VARCHAR(255) NOT NULL&lt;br&gt;village: VARCHAR(100) NOT NULL&lt;br&gt;district: VARCHAR(100) NOT NULL&lt;br&gt;state: VARCHAR(100) NOT NULL&lt;br&gt;postal_code: VARCHAR(10) NOT NULL&lt;br&gt;image_url: VARCHAR(500)&lt;br&gt;active: BOOLEAN NOT NULL DEFAULT TRUE&lt;br&gt;created_at: TIMESTAMP NOT NULL&lt;br&gt;updated_at: TIMESTAMP NOT NULL&lt;/div&gt;" vertex="1">
+          <mxGeometry height="500" width="420" x="470" y="970" as="geometry" />
+        </mxCell>
+        <mxCell id="eXtlm2uXMPQOfzkQaLBF-7" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=8;strokeColor=#2f7d4b;strokeWidth=2;fillColor=#f7fff8;fontColor=#111827;" value="&lt;div style=&#39;font-size:16px;font-weight:bold;text-align:center&#39;&gt;equipment_rentals&lt;/div&gt;&lt;hr&gt;&lt;div style=&#39;text-align:left;font-size:12px;line-height:1.45&#39;&gt;PK id: BIGSERIAL&lt;br&gt;FK equipment_id: BIGINT NOT NULL&lt;br&gt;FK farmer_id: BIGINT NOT NULL&lt;br&gt;start_date: DATE NOT NULL&lt;br&gt;end_date: DATE NOT NULL&lt;br&gt;total_days: INTEGER NOT NULL&lt;br&gt;rental_price_per_day: NUMERIC(12,2) NOT NULL&lt;br&gt;total_amount: NUMERIC(12,2) NOT NULL&lt;br&gt;status: VARCHAR(30) NOT NULL DEFAULT &amp;#x27;PENDING&amp;#x27;&lt;br&gt;farmer_note: VARCHAR(500)&lt;br&gt;owner_response_note: VARCHAR(500)&lt;br&gt;created_at: TIMESTAMP NOT NULL&lt;br&gt;updated_at: TIMESTAMP NOT NULL&lt;/div&gt;" vertex="1">
+          <mxGeometry height="400" width="470" x="400" y="1660" as="geometry" />
+        </mxCell>
+        <mxCell id="eXtlm2uXMPQOfzkQaLBF-8" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=8;strokeColor=#2f7d4b;strokeWidth=2;fillColor=#f7fff8;fontColor=#111827;" value="&lt;div style=&#39;font-size:16px;font-weight:bold;text-align:center&#39;&gt;products&lt;/div&gt;&lt;hr&gt;&lt;div style=&#39;text-align:left;font-size:12px;line-height:1.45&#39;&gt;PK id: BIGSERIAL&lt;br&gt;FK seller_id: BIGINT NOT NULL&lt;br&gt;name: VARCHAR(150) NOT NULL&lt;br&gt;category: VARCHAR(30) NOT NULL&lt;br&gt;description: VARCHAR(1000)&lt;br&gt;price: NUMERIC(12,2) NOT NULL&lt;br&gt;stock_quantity: INTEGER NOT NULL&lt;br&gt;unit: VARCHAR(20) NOT NULL&lt;br&gt;image_url: VARCHAR(500)&lt;br&gt;service_address: VARCHAR(255) NOT NULL&lt;br&gt;village: VARCHAR(100) NOT NULL&lt;br&gt;district: VARCHAR(100) NOT NULL&lt;br&gt;state: VARCHAR(100) NOT NULL&lt;br&gt;postal_code: VARCHAR(10) NOT NULL&lt;br&gt;active: BOOLEAN NOT NULL DEFAULT TRUE&lt;br&gt;created_at: TIMESTAMP NOT NULL&lt;br&gt;updated_at: TIMESTAMP NOT NULL&lt;/div&gt;" vertex="1">
+          <mxGeometry height="480" width="420" x="1120" y="970" as="geometry" />
+        </mxCell>
+        <mxCell id="eXtlm2uXMPQOfzkQaLBF-9" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=8;strokeColor=#2f7d4b;strokeWidth=2;fillColor=#f7fff8;fontColor=#111827;" value="&lt;div style=&#39;font-size:16px;font-weight:bold;text-align:center&#39;&gt;product_orders&lt;/div&gt;&lt;hr&gt;&lt;div style=&#39;text-align:left;font-size:12px;line-height:1.45&#39;&gt;PK id: BIGSERIAL&lt;br&gt;FK product_id: BIGINT NOT NULL&lt;br&gt;FK buyer_id: BIGINT NOT NULL&lt;br&gt;quantity: INTEGER NOT NULL&lt;br&gt;unit_price: NUMERIC(12,2) NOT NULL&lt;br&gt;total_amount: NUMERIC(12,2) NOT NULL&lt;br&gt;status: VARCHAR(30) NOT NULL DEFAULT &amp;#x27;PENDING&amp;#x27;&lt;br&gt;buyer_note: VARCHAR(500)&lt;br&gt;seller_response_note: VARCHAR(500)&lt;br&gt;created_at: TIMESTAMP NOT NULL&lt;br&gt;updated_at: TIMESTAMP NOT NULL&lt;/div&gt;" vertex="1">
+          <mxGeometry height="380" width="450" x="1140" y="1660" as="geometry" />
+        </mxCell>
+        <mxCell id="eXtlm2uXMPQOfzkQaLBF-10" edge="1" parent="1" source="eXtlm2uXMPQOfzkQaLBF-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=none;endArrow=none;strokeColor=#374151;strokeWidth=1.6;" target="eXtlm2uXMPQOfzkQaLBF-4" value="1      0..*">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="eXtlm2uXMPQOfzkQaLBF-11" edge="1" parent="1" source="eXtlm2uXMPQOfzkQaLBF-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=none;endArrow=none;strokeColor=#374151;strokeWidth=1.6;" target="eXtlm2uXMPQOfzkQaLBF-4" value="1      0..*">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="eXtlm2uXMPQOfzkQaLBF-12" edge="1" parent="1" source="eXtlm2uXMPQOfzkQaLBF-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=none;endArrow=none;strokeColor=#374151;strokeWidth=1.6;" target="eXtlm2uXMPQOfzkQaLBF-5" value="1      0..1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="eXtlm2uXMPQOfzkQaLBF-13" edge="1" parent="1" source="eXtlm2uXMPQOfzkQaLBF-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=none;endArrow=none;strokeColor=#374151;strokeWidth=1.6;" target="eXtlm2uXMPQOfzkQaLBF-6" value="1      0..*">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="eXtlm2uXMPQOfzkQaLBF-14" edge="1" parent="1" source="eXtlm2uXMPQOfzkQaLBF-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=none;endArrow=none;strokeColor=#374151;strokeWidth=1.6;" target="eXtlm2uXMPQOfzkQaLBF-8" value="1      0..*">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="eXtlm2uXMPQOfzkQaLBF-15" edge="1" parent="1" source="eXtlm2uXMPQOfzkQaLBF-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=none;endArrow=none;strokeColor=#374151;strokeWidth=1.6;" target="eXtlm2uXMPQOfzkQaLBF-7" value="1      0..*">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="eXtlm2uXMPQOfzkQaLBF-16" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=none;endArrow=none;strokeColor=#374151;strokeWidth=1.6;" value="1 farmer      0..*">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="955" y="1200" />
+              <mxPoint x="945" y="1200" />
+              <mxPoint x="945" y="1860" />
+            </Array>
+            <mxPoint x="955" y="740" as="sourcePoint" />
+            <mxPoint x="835" y="1860" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="eXtlm2uXMPQOfzkQaLBF-21" connectable="0" parent="eXtlm2uXMPQOfzkQaLBF-16" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="Text" vertex="1">
+          <mxGeometry relative="1" x="-0.1435" y="14" as="geometry">
+            <mxPoint y="1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="eXtlm2uXMPQOfzkQaLBF-17" edge="1" parent="1" source="eXtlm2uXMPQOfzkQaLBF-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=none;endArrow=none;strokeColor=#374151;strokeWidth=1.6;" target="eXtlm2uXMPQOfzkQaLBF-9" value="1      0..*">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="eXtlm2uXMPQOfzkQaLBF-18" edge="1" parent="1" source="eXtlm2uXMPQOfzkQaLBF-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=none;endArrow=none;strokeColor=#374151;strokeWidth=1.6;" target="eXtlm2uXMPQOfzkQaLBF-9" value="1 buyer      0..*">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="990" y="1850" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="eXtlm2uXMPQOfzkQaLBF-19" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=8;strokeColor=#9ca3af;fillColor=#fffdf5;fontColor=#374151;dashed=1;" value="Key Checks / Constraints&lt;br&gt;&lt;br&gt;provider_type: EQUIPMENT_OWNER, PRODUCT_SELLER, BOTH&lt;br&gt;verification_status: UNVERIFIED, PENDING, VERIFIED, REJECTED&lt;br&gt;equipment status: AVAILABLE, UNAVAILABLE, MAINTENANCE&lt;br&gt;rental status: PENDING, APPROVED, REJECTED, CANCELLED, COMPLETED&lt;br&gt;order status: PENDING, ACCEPTED, REJECTED, CANCELLED, COMPLETED" vertex="1">
+          <mxGeometry height="250" width="260" x="1660" y="770" as="geometry" />
+        </mxCell>
+        <mxCell id="eXtlm2uXMPQOfzkQaLBF-20" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=8;strokeColor=#9ca3af;fillColor=#fffdf5;fontColor=#374151;dashed=1;" value="Important Indexes&lt;br&gt;&lt;br&gt;equipment: owner, category, location, active/status&lt;br&gt;equipment_rentals: equipment, farmer, status, dates&lt;br&gt;products: seller, category, location, active&lt;br&gt;product_orders: product, buyer, status, created_at" vertex="1">
+          <mxGeometry height="250" width="300" x="1630" y="1140" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
